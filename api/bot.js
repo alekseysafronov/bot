@@ -47,3 +47,17 @@ export default async function handler(req, res) {
 
   res.status(200).send("ok");
 }
+
+
+export default async function handler(req, res) {
+  if (req.method !== "POST") return res.status(405).send("Method Not Allowed");
+
+  // Проверка ключей
+  console.log("TG_BOT_TOKEN =", process.env.TG_BOT_TOKEN ? "OK" : "NOT SET");
+  console.log("GEMINI_API_KEY =", process.env.GEMINI_API_KEY ? "OK" : "NOT SET");
+
+  res.status(200).json({
+    TG_BOT_TOKEN: process.env.TG_BOT_TOKEN ? "OK" : "NOT SET",
+    GEMINI_API_KEY: process.env.GEMINI_API_KEY ? "OK" : "NOT SET"
+  });
+}
